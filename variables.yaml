@@ -15,15 +15,7 @@ docker_compose_version: 1.15.0
 ###############################################
 # kubernetes
 ###############################################
-kubernetes_install: True
-# k8s versions
-kubecni_version: "0.7.5-00"
-kubectl_version: "1.16.1-00"
-kubeadm_version: "1.16.1-00"
-kubelet_version: "1.16.1-00"
-# Allow pods to run on Master
-kubeadm_taint_master: False
-# In a multi network interface server you can specify which ip address to bind kubeadm to, otherwise comment this variable out
+kubernetes_install: False you can specify which ip address to bind kubeadm to, otherwise comment this variable out
 # and the default IP address discovered by Ansible will be used
 kubeadm_advertise_address: "{{ hostvars['master1']['ansible_host'] }}"
 # With a vagrant environment the first network interface is used by Vagrant. The network interface to bind kubeadm to must be specified here, e.g. eth1.
@@ -46,9 +38,12 @@ openstack_end_float: "172.24.4.250"
 ###############################################
 # Skydive
 ###############################################
-install_skydive: True
+install_skydive: False
 
 ###############################################
 # OpenVPN
 ###############################################
-install_openvpn: False
+install_openvpn: True
+openvpn_port: 1194
+# change this to the public IP address or domain name of the bare metal Ubuntu server
+openvpn_public_ip: 10.0.0.1

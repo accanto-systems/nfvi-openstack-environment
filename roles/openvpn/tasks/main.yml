@@ -32,12 +32,18 @@
     state: present
     reload: yes
 
-- name: apply forwarding rules
+- name: apply forwarding rules to Internet
   become: yes
-  command: iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+  command: iptables -t nat -A POSTROUTING -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
 
 - name: start service openvpn
   become: yes
   service:
     name: openvpn@server
     state: started
+
+- name: copy openvpn client 
+  become: yes
+  template:
+    src: ../config/client/client-template.ovpn
+    dest: client.ovpn
