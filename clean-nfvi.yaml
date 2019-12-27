@@ -68,3 +68,4 @@
 
     - name: kill skydive
       command: pkill skydive
+      when: install_skydive == True
