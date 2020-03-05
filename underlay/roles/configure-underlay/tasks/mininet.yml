@@ -12,7 +12,6 @@
 - name: install flask
   pip: 
     name: flask
-  when: mininet_result.stat.exists == False 
 
 - name: clone mininet
   git:
